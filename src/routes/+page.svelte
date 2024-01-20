@@ -50,6 +50,10 @@
 
 		showForm = false
 	}
+
+	const cancelEdit = (): void => {
+		showForm = false
+	}
 </script>
 
 <main id="meetups">
@@ -63,7 +67,7 @@
 		>
 
 		{#if showForm}
-			<MeetUpForm on:save={addNewMeetup} />
+			<MeetUpForm on:save={addNewMeetup} on:cancel={cancelEdit} />
 		{/if}
 
 		<h1>Meetups</h1>
