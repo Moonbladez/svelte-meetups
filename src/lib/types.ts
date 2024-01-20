@@ -4,6 +4,6 @@ export interface IMeetup {
 	subtitle: string
 	description: string
 	imageUrl: string
-	address: string
 	contact: string
+	isFavourite: boolean
 }

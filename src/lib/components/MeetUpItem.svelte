@@ -1,16 +1,27 @@
 <script lang="ts">
+	import Badge from '$lib/components/Badge.svelte'
+	import Button from '$lib/components/Button.svelte'
+	import { createEventDispatcher } from 'svelte'
+
+	export let id: string
 	export let title: string
 	export let subtitle: string
 	export let description: string
 	export let imageUrl: string
-	export let address: string
+	export let isFavourite: boolean
+
+	const dispatch = createEventDispatcher()
 </script>
 
 <article>
 	<header>
-		<h2>{title}</h2>
+		<h2>
+			{title}
+			{#if isFavourite}
+				<Badge>Favourite</Badge>
+			{/if}
+		</h2>
 		<h3>{subtitle}</h3>
-		<address>{address}</address>
 	</header>
 	<div class="image">
 		<img src={imageUrl} alt={title} />
@@ -19,8 +30,12 @@
 		<p>{description}</p>
 	</div>
 	<footer>
-		<button>Show Details</button>
-		<button>Favorite</button>
+		<div class="actions">
+			<Button size="small" outline color="secondary">Show Details</Button>
+			<Button size="small" on:click={() => dispatch('toggleFavourite', { id })}
+				>{isFavourite ? 'Remove Favourite' : 'Add Favourite'}</Button
+			>
+		</div>
 	</footer>
 </article>
 
@@ -49,17 +64,19 @@
 		object-fit: cover;
 	}
 
+	.actions {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	h2 {
 		font-size: 1.25rem;
 		margin: 0.5rem 0;
 		font-family: 'Roboto Slab', sans-serif;
-	}
-
-	h2.is-favorite {
-		background: #01a129;
-		color: white;
-		padding: 0 0.5rem;
-		border-radius: 5px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	h3 {

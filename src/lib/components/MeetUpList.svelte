@@ -8,11 +8,14 @@
 	{#each meetups as meetup (meetup.id)}
 		<li>
 			<MeetUpItem
+				id={meetup.id}
 				title={meetup.title}
 				subtitle={meetup.subtitle}
 				description={meetup.description}
 				imageUrl={meetup.imageUrl}
 				address={meetup.address}
+				isFavourite={meetup.isFavourite}
+				on:toggleFavourite
 			/>
 		</li>
 	{/each}
