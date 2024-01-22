@@ -13,7 +13,6 @@
 				subtitle={meetup.subtitle}
 				description={meetup.description}
 				imageUrl={meetup.imageUrl}
-				address={meetup.address}
 				isFavourite={meetup.isFavourite}
 				on:toggleFavourite
 			/>

@@ -22,7 +22,6 @@
 			<Button on:click={handleClose}>Close</Button>
 			<footer></footer></slot
 		>
-		<footer></footer>
 	</footer>
 </div>
 
