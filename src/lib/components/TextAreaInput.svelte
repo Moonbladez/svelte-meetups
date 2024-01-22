@@ -12,7 +12,7 @@
 
 <div class="form-control" class:invalid={!valid && touched}>
 	<label for={id}>{label}</label>
-	<textarea {id} {rows} {required} on:input {value} on:blur={() => (touched = true)} />
+	<textarea {id} {rows} {required} bind:value on:blur={() => (touched = true)} />
 	{#if validityMessage && !valid && touched}
 		<p class="error-message">{validityMessage}</p>
 	{/if}

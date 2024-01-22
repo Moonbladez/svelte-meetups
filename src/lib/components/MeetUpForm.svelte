@@ -86,8 +86,7 @@
 		<TextAreaInput
 			id="description"
 			label="Description"
-			value={formData.description}
-			on:input={(event) => handleInput(event, 'description')}
+			bind:value={formData.description}
 			validityMessage="Please enter a valid description"
 			valid={isDescriptionValid}
 		/>
