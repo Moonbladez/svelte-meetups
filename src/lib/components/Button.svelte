@@ -3,9 +3,15 @@
 	export let color: 'primary' | 'secondary' = 'primary'
 	export let outline: boolean = false
 	export let size: 'small' | 'medium' | 'large' = 'medium'
+	export let disabled: boolean = false
 </script>
 
-<button {type} on:click class={`btn-${color} ${outline && `btn-${color}-outline`} btn-${size}`}>
+<button
+	{type}
+	on:click
+	class={`btn-${color} ${outline && `btn-${color}-outline`} btn-${size}`}
+	{disabled}
+>
 	<slot />
 </button>
 
@@ -81,5 +87,10 @@
 
 	.btn {
 		border-radius: 4px;
+	}
+
+	button:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 </style>

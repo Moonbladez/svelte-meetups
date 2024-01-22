@@ -29,6 +29,7 @@
 	let isEmailValid: boolean = false
 	let isImageUrlValid: boolean = false
 	let isDescriptionValid: boolean = false
+	let isFormValid: boolean = false
 
 	const dispatch = createEventDispatcher()
 
@@ -36,6 +37,9 @@
 	$: isSubtitleValid = !isEmpty(formData.subtitle)
 	$: isEmailValid = !isValidEmail(formData.email)
 	$: isImageUrlValid = !isEmpty(formData.imageUrl)
+	$: isDescriptionValid = !isEmpty(formData.description)
+	$: isFormValid =
+		isTitleValid && isSubtitleValid && isEmailValid && isImageUrlValid && isDescriptionValid
 
 	const handleInput = (event: Event, field: keyof IFormData) => {
 		const target = event.target as HTMLInputElement
@@ -90,7 +94,7 @@
 	</form>
 	<div slot="footer" class="footer">
 		<Button outline on:click={() => dispatch('cancel')}>Cancel</Button>
-		<Button on:click={() => dispatch('save', formData)}>Save</Button>
+		<Button on:click={() => dispatch('save', formData)} disabled={!isFormValid}>Save</Button>
 	</div>
 </Modal>
 
