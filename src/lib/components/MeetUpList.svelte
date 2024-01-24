@@ -14,7 +14,6 @@
 				description={meetup.description}
 				imageUrl={meetup.imageUrl}
 				isFavourite={meetup.isFavourite}
-				on:toggleFavourite
 			/>
 		</li>
 	{/each}

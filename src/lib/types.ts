@@ -1,9 +1,12 @@
-export interface IMeetup {
-	id: string
+export interface IFormData {
 	title: string
 	subtitle: string
-	description: string
+	email: string
 	imageUrl: string
-	contact: string
+	description: string
+}
+
+export interface IMeetup extends IFormData {
+	id: string
 	isFavourite: boolean
 }

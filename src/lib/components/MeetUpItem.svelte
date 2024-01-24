@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Badge from '$lib/components/Badge.svelte'
 	import Button from '$lib/components/Button.svelte'
-	import { createEventDispatcher } from 'svelte'
+	import meetups from '$lib/store/meetup-store'
 
 	export let id: string
 	export let title: string
@@ -10,7 +10,9 @@
 	export let imageUrl: string
 	export let isFavourite: boolean
 
-	const dispatch = createEventDispatcher()
+	const toggleFavourite = (): void => {
+		meetups.toggleFavourite({ id: id })
+	}
 </script>
 
 <article>
@@ -32,7 +34,7 @@
 	<footer>
 		<div class="actions">
 			<Button size="small" outline color="secondary">Show Details</Button>
-			<Button size="small" on:click={() => dispatch('toggleFavourite', { id })}
+			<Button size="small" on:click={toggleFavourite}
 				>{isFavourite ? 'Remove Favourite' : 'Add Favourite'}</Button
 			>
 		</div>

@@ -3,20 +3,12 @@
 	import Modal from '$lib/components/Modal.svelte'
 	import TextAreaInput from '$lib/components/TextAreaInput.svelte'
 	import TextInput from '$lib/components/TextInput.svelte'
+	import meetups from '$lib/store/meetup-store'
+	import type { IFormData } from '$lib/types'
 	import { createEventDispatcher } from 'svelte'
 	import { isEmpty, isValidEmail } from '../../helpers/validation'
 
-	interface IFormData {
-		id: string
-		title: string
-		subtitle: string
-		email: string
-		imageUrl: string
-		description: string
-	}
-
 	let formData: IFormData = {
-		id: Math.random().toString(),
 		title: '',
 		subtitle: '',
 		email: '',
@@ -45,11 +37,16 @@
 		const target = event.target as HTMLInputElement
 		formData[field] = target.value
 	}
+
+	const handleSubmit = () => {
+		meetups.addMeetup(formData)
+		dispatch('save')
+	}
 </script>
 
 <Modal on:cancel>
 	<h2 slot="header">header</h2>
-	<form class="form-container" on:submit|preventDefault={() => dispatch('save', formData)}>
+	<form class="form-container" on:submit|preventDefault={handleSubmit}>
 		<TextInput
 			id="title"
 			label="Title"
